@@ -6,15 +6,21 @@ from django.http import Http404
 
 
 def index(request):
+    """
+    A view that returns a list of all books in the Book Outlet store.
+    """
     books = Book.objects.all()
     return render(request, "book_outlet/index.html", {
         "books": books
     })
 
 
-def book_detail(request, id):
+def book_detail(request, slug):
+    """
+    A view that returns a particular book based on its slug.
+    """
     try:
-        book = Book.objects.get(pk=id)
+        book = Book.objects.get(slug=slug)
     except Book.DoesNotExist:
         raise Http404("Book does not exist")
 
