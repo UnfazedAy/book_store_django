@@ -17,7 +17,11 @@ class Book(models.Model):
     )
     author = models.CharField(null=True, max_length=100)
     is_bestselling = models.BooleanField(default=False)
-    slug = models.SlugField(default="", null=False)
+
+    slug = models.SlugField(
+        default="", null=False,
+        blank=True, db_index=True
+    )
 
     def get_absolute_url(self):
         """
@@ -25,13 +29,13 @@ class Book(models.Model):
         """
         return reverse("book_detail", args=[self.slug])
 
-    def save(self, *args, **kwargs):
-        """
-        A method that overrides the save method of the parent class.
-        """
-        self.slug = slugify(
-            self.title)  # e.g "The Great Gatsby" -> "the-great-gatsby"
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     """
+    #     A method that overrides the save method of the parent class.
+    #     """
+    #     self.slug = slugify(
+    #         self.title)  # e.g "The Great Gatsby" -> "the-great-gatsby"
+    #     super().save(*args, **kwargs)
 
     def __str__(self):
         """
