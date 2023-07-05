@@ -1,6 +1,6 @@
 # BOOK STORE
 
-A simple book store application using Django. This project is specifically aimed to practice Django and its features as well as utilize the Django REST framework and implement database models.
+A simple book store application using Django. This project is specifically aimed to practice Django and its features as well as utilize the Django REST framework and implement database models and entity relationships.
 
 ## Getting Started
 
