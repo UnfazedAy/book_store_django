@@ -6,6 +6,14 @@ from django.utils.text import slugify
 # Create your models here.
 
 
+class Author(models.Model):
+    """
+    A class that represents an author in the Book Outlet store.
+    """
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+
 class Book(models.Model):
     """
     This class represents a book in the Book Outlet store.
@@ -15,7 +23,7 @@ class Book(models.Model):
     rating = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
-    author = models.CharField(null=True, max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     is_bestselling = models.BooleanField(default=False)
 
     slug = models.SlugField(
